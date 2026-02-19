@@ -16,6 +16,7 @@ interface Complaint {
   id: string;
   title: string;
   description: string;
+  image_url: string | null;
   location: string;
   latitude: number | null;
   longitude: number | null;
@@ -160,6 +161,13 @@ export default function AdminComplaints() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <p className="text-sm text-muted-foreground">{selected.description}</p>
+                  {selected.image_url && (
+                    <img
+                      src={selected.image_url}
+                      alt={`Evidence for ${selected.title}`}
+                      className="h-48 w-full rounded-md object-cover border"
+                    />
+                  )}
                   <div className="flex gap-2">
                     <PriorityBadge priority={selected.priority} />
                     <StatusBadge status={selected.status} />
